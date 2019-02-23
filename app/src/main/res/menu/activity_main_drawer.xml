@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_upload"
+            android:icon="@drawable/ic_file_upload_black_24dp"
+            android:title="Upload" />
+
+        <item
+            android:id="@+id/nav_designs"
+            android:icon="@drawable/ic_photo_library_black_24dp"
+            android:title="Designs" />
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/ic_info_black_24dp"
+            android:title="About us" />
+        <item
+            android:id="@+id/nav_account"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Account settings" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_contact"
+                android:icon="@drawable/ic_local_phone_black_24dp"
+                android:title="Contact us" />
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_exit_to_app_black_24dp"
+                android:title="Logout" />
+        </menu>
+    </item>
+
+</menu>
