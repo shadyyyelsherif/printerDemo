@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.shadi.printerdemo.Nav_Fragments.HomeFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -78,7 +79,7 @@ public class LoginRegisterActivity extends AppCompatActivity implements View.OnC
 
             case R.id.login:
 //                loGin();
-                startActivity(new Intent(LoginRegisterActivity.this, MainActivity.class));
+                startActivity(new Intent(LoginRegisterActivity.this, HomeFragment.class));
                 break;
 
 

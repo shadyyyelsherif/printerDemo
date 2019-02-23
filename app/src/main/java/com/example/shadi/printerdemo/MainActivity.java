@@ -26,6 +26,11 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.shadi.printerdemo.Nav_Fragments.AboutFragment;
+import com.example.shadi.printerdemo.Nav_Fragments.AccountFragment;
+import com.example.shadi.printerdemo.Nav_Fragments.ContactFragment;
+import com.example.shadi.printerdemo.Nav_Fragments.DesignsFragment;
+import com.example.shadi.printerdemo.Nav_Fragments.HomeFragment;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -48,34 +53,12 @@ public class MainActivity extends AppCompatActivity
     //Action Button
     FloatingActionButton fab;
 
-    // custom ListView
-    int [] img = {R.drawable.a, R.drawable.b, R.drawable.c, R.drawable.d };
-
-    String [] names = {"Letter a", "Letter b", "Letter c", "Letter d"};
-    String [] descrption = {"Description a", "Description b", "Description c", "Description d"};
-
     @Override
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //ActionButton
-       /* fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               fab.setRotation(45);
-               startActivity(new Intent(MainActivity.this, PostActivity.class));
-            }
-        });*/
-
-        //custom listView
-        ListView lv = (ListView)findViewById(R.id.listView);
-        CustomAdapter customAdapter = new CustomAdapter();
-
-        lv.setAdapter(customAdapter);
 
       //  Toast.makeText(MainActivity.this, "1", Toast.LENGTH_SHORT).show();
 
@@ -119,11 +102,25 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new HomeFragment()).commit();
 
+        }
+
+        //ActionButton
+       /* fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               fab.setRotation(45);
+               startActivity(new Intent(MainActivity.this, PostActivity.class));
+            }
+        });*/
     }
 
 
-    class CustomAdapter extends BaseAdapter{
+    /*class CustomAdapter extends BaseAdapter{
 
         @Override
         public int getCount() {
@@ -154,7 +151,7 @@ public class MainActivity extends AppCompatActivity
 
             return view;
         }
-    }
+    }*/
 
 
     @Override
@@ -212,20 +209,24 @@ public class MainActivity extends AppCompatActivity
             // Handle the camera action
         } else if (id == R.id.nav_home) {
 
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
 
-        } else if (id == R.id.nav_upload) {
-            //upload
 
         } else if (id == R.id.nav_designs) {
 
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DesignsFragment()).commit();
 
         } else if (id == R.id.nav_about) {
 
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AboutFragment()).commit();
 
         }else if (id == R.id.nav_account) {
 
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AccountFragment()).commit();
 
         }else if (id == R.id.nav_contact) {
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ContactFragment()).commit();
 
 
         } else if (id == R.id.nav_logout) {
