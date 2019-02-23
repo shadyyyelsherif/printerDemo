@@ -214,7 +214,7 @@ public class MainActivity extends AppCompatActivity
 
 
         } else if (id == R.id.nav_upload) {
-
+            //upload
 
         } else if (id == R.id.nav_designs) {
 
