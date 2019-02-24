@@ -36,12 +36,11 @@
         <activity android:name=".Register" />
         <activity android:name=".LoginRegisterActivity" />
         <activity android:name=".DesignInfo" />
-
-
         <activity
             android:name=".ForgetPassword"
             android:label="@string/title_activity_forget_password"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ChangePassword"></activity>
     </application>
 
 </manifest>

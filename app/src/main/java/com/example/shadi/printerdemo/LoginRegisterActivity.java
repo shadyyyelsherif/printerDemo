@@ -25,9 +25,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginRegisterActivity extends AppCompatActivity implements View.OnClickListener {
-    Button bt_Login, bt_register;
+    Button bt_Login;
 
-    TextView forget;
+    TextView forget, bt_register;
     ImageView img;
     EditText ed_Username, ed_Password;
     ProgressDialog progressDialog ;
@@ -42,13 +42,14 @@ public class LoginRegisterActivity extends AppCompatActivity implements View.OnC
         progressDialog = new ProgressDialog(this);
 
 
-        bt_register = findViewById(R.id.register);
         bt_Login = findViewById(R.id.login);
  //       bt_Learn = findViewById(R.id.learn);
         forget = findViewById(R.id.forgot);
 
         ed_Username = findViewById(R.id.user);
         ed_Password = findViewById(R.id.pass);
+        bt_register = findViewById(R.id.register);
+
 
         forget = findViewById(R.id.forgot);
 
@@ -79,12 +80,11 @@ public class LoginRegisterActivity extends AppCompatActivity implements View.OnC
 
             case R.id.login:
 //                loGin();
-                startActivity(new Intent(LoginRegisterActivity.this, HomeFragment.class));
+                startActivity(new Intent(LoginRegisterActivity.this, MainActivity.class));
                 break;
 
 
             case R.id.forgot:
-
                 startActivity(new Intent(LoginRegisterActivity.this,ForgetPassword.class));
                 break;
 
