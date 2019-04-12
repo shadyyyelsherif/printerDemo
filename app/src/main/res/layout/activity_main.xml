@@ -7,6 +7,12 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/fragment_container">
+
+    </FrameLayout>
         <android.support.v4.widget.DrawerLayout
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/drawer_layout"
@@ -15,12 +21,7 @@
         android:fitsSystemWindows="true"
         tools:openDrawer="start">
 
-            <FrameLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:id="@+id/fragment_container">
 
-            </FrameLayout>
         <include
             layout="@layout/app_bar_main"
             android:layout_width="match_parent"

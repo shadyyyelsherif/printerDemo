@@ -37,9 +37,7 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         //custom listView
-        ListView lv2 = view.findViewById(R.id.listView2);
-        CustomAdapter customAdapter = new CustomAdapter();
-        lv2.setAdapter(customAdapter);
+
 
     return view;
 

@@ -7,18 +7,29 @@ package com.example.shadi.printerdemo;
 public class Blog {
 
     private String time ;
-    private String layer;
+    private String name;
+    private String Filament;
     private String image;
 
     public Blog()
     {
 
     }
-    public Blog(String time, String layer, String image) {
+    public Blog(String time, String name, String Filament,String image) {
         this.time  = time;
-        this.layer = layer;
-        this.image = image;
+        this.name = name;
+        this.Filament = Filament;
+        this.image=image;
     }
+
+    public String getFilament() {
+        return Filament;
+    }
+
+    public void setFilament(String Filament) {
+        this.Filament = Filament;
+    }
+
 
     public String getImage() {
         return image;
@@ -28,12 +39,12 @@ public class Blog {
         this.image = image;
     }
 
-    public String getlayer() {
-        return layer;
+    public String getname() {
+        return name;
     }
 
-    public void setlayer(String layer) {
-        this.layer = layer;
+    public void setname(String name) {
+        this.name = name;
     }
 
     public String gettime() {

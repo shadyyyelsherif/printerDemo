@@ -79,8 +79,8 @@ public class LoginRegisterActivity extends AppCompatActivity implements View.OnC
         switch (view.getId()) {
 
             case R.id.login:
-//                loGin();
-                startActivity(new Intent(LoginRegisterActivity.this, MainActivity.class));
+                loGin();
+              //  startActivity(new Intent(LoginRegisterActivity.this, MainActivity.class));
                 break;
 
 

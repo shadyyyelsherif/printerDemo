@@ -25,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.shadi.printerdemo.Nav_Fragments.AboutFragment;
 import com.example.shadi.printerdemo.Nav_Fragments.AccountFragment;
@@ -59,18 +60,24 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    fab= (FloatingActionButton)findViewById(R.id.fab);
+    fab.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            startActivity(new Intent(MainActivity.this,PostActivity.class));
 
-      //  Toast.makeText(MainActivity.this, "1", Toast.LENGTH_SHORT).show();
+        }
+    });
+      //  Toast.makeText(Proofile.this, "1", Toast.LENGTH_SHORT).show();
 
-        mDatabase= FirebaseDatabase.getInstance().getReference().child("order");
-       mBlogList = (RecyclerView)findViewById(R.id.blog_list );
-       mBlogList.setHasFixedSize(true);
-       mBlogList.setLayoutManager(new LinearLayoutManager(this));
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("order");
+        mBlogList = (RecyclerView) findViewById(R.id.blog_list);
+        mBlogList.setHasFixedSize(true);
+        mBlogList.setLayoutManager(new LinearLayoutManager(this));
         mBlogList.setLayoutManager(new LinearLayoutManager(this));
 
 
-
-    //    Toast.makeText(MainActivity.this, "2", Toast.LENGTH_SHORT).show();
+    //    Toast.makeText(Proofile.this, "2", Toast.LENGTH_SHORT).show();
         auth = FirebaseAuth.getInstance();
 
         authListener = new FirebaseAuth.AuthStateListener() {
@@ -80,8 +87,8 @@ public class MainActivity extends AppCompatActivity
                 if (user == null) {
                     // user auth state is changed - user is null
                     // launch login activity
-                //   startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                  //  finish();
+                    //   startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                    //  finish();
                 }
 
 
@@ -89,7 +96,8 @@ public class MainActivity extends AppCompatActivity
         };
 
 
-       // Toast.makeText(MainActivity.this, "3", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(Proofile.this, "3", Toast.LENGTH_SHORT).show();
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -101,57 +109,24 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        auth = FirebaseAuth.getInstance();
 
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new HomeFragment()).commit();
-
-        }
-
-        //ActionButton
-       /* fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        authListener = new FirebaseAuth.AuthStateListener() {
             @Override
-            public void onClick(View v) {
-               fab.setRotation(45);
-               startActivity(new Intent(MainActivity.this, PostActivity.class));
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user == null) {
+                    //  user auth state is changed - user is null
+                      // launch login activity
+                         startActivity(new Intent(MainActivity.this, SplashScreen.class));
+                        finish();
+                }
+
+
             }
-        });*/
+        };
+
     }
-
-
-    /*class CustomAdapter extends BaseAdapter{
-
-        @Override
-        public int getCount() {
-            return img.length ;
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int position, View view, ViewGroup parent) {
-
-            view = getLayoutInflater().inflate(R.layout.custom_list, null);
-            ImageView imageView = view.findViewById(R.id.imageView1);
-            TextView textView = view.findViewById(R.id.textView_name);
-            TextView textView1 = view.findViewById(R.id.textView_description);
-
-            imageView.setImageResource(img[position]);
-            textView.setText(names[position]);
-            textView1.setText(descrption[position]);
-
-            return view;
-        }
-    }*/
 
 
     @Override
@@ -168,7 +143,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.activity_main_drawer, menu);
         return true;
     }
 
@@ -184,9 +159,11 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_setting) {
             return true;
         }
-        if(item.getItemId()== R.id.action_add ) {
+        if (item.getItemId() == R.id.action_add) {
 
-           startActivity(new Intent(MainActivity.this,PostActivity.class));
+
+
+            startActivity(new Intent(MainActivity.this,PostActivity.class));
 
         }
 
@@ -201,32 +178,33 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
 
+
         if (id == R.id.nav_upload) {
 
-         Intent intent = new Intent(this,Uploadfiletoserver.class);
-         startActivity(intent);
+            Intent intent = new Intent(this,Uploadfiletoserver.class);
+            startActivity(intent);
 
             // Handle the camera action
         } else if (id == R.id.nav_home) {
 
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+          // getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
 
 
         } else if (id == R.id.nav_designs) {
 
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DesignsFragment()).commit();
+             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DesignsFragment()).commit();
 
         } else if (id == R.id.nav_about) {
 
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AboutFragment()).commit();
+              getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AboutFragment()).commit();
 
         }else if (id == R.id.nav_account) {
 
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AccountFragment()).commit();
+               getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AccountFragment()).commit();
 
         }else if (id == R.id.nav_contact) {
 
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ContactFragment()).commit();
+              getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ContactFragment()).commit();
 
 
         } else if (id == R.id.nav_logout) {
@@ -235,11 +213,11 @@ public class MainActivity extends AppCompatActivity
             finish();
         }
 
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
 
     public void signOut() {
@@ -249,7 +227,7 @@ public class MainActivity extends AppCompatActivity
     protected void onStart() {
         super.onStart();
 
-        FirebaseRecyclerAdapter<Blog,BlogViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Blog, BlogViewHolder>(
+        FirebaseRecyclerAdapter<Blog, BlogViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Blog, BlogViewHolder>(
 
                 Blog.class,
                 R.layout.blog_row,
@@ -261,47 +239,51 @@ public class MainActivity extends AppCompatActivity
             protected void populateViewHolder(BlogViewHolder viewHolder, Blog model, int position) {
 
                 viewHolder.setTitle(model.gettime());
-                viewHolder.setDesc(model.getlayer());
-                viewHolder.setImage(getApplicationContext(),model.getImage());
+                viewHolder.setname(model.getname());
+                viewHolder.setFilament(model.getFilament());
+                viewHolder.setImage(getApplicationContext(), model.getImage());
             }
         };
         mBlogList.setAdapter(firebaseRecyclerAdapter);
         auth.addAuthStateListener(authListener);
 
     }
+
     public static class BlogViewHolder extends RecyclerView.ViewHolder {
 
         View mView;
 
         public BlogViewHolder(View itemView) {
             super(itemView);
-            mView=itemView;
+            mView = itemView;
         }
 
-        public void setTitle(String title)
-        {
-            TextView post_title=(TextView) mView.findViewById(R.id.Post_title);
-            post_title.setText(title);
+        public void setTitle(String title) {
+            TextView post_title = (TextView) mView.findViewById(R.id.Post_title);
+            post_title.setText("Time : "+title);
         }
 
-        public void setDesc(String desc)
-        {
-            TextView post_desc=(TextView) mView.findViewById(R.id.Post_desc);
+        public void setname(String desc) {
+            TextView post_desc = (TextView) mView.findViewById(R.id.design_name);
             post_desc.setText(desc);
         }
 
-        public  void setImage(Context ctx, String Image)
-        {
+        public void setImage(Context ctx, String Image) {
 
             ImageView imageView = (ImageView) mView.findViewById(R.id.Post_image);
 
             Picasso.with(ctx).load(Image).into(imageView);
 
         }
+
+        public void setFilament(String Image) {
+
+
+            TextView post_desc = (TextView) mView.findViewById(R.id.Post_desc);
+             post_desc.setText("Filament : "+Image);
+
+        }
     }
-
-
-
 
 
     @Override

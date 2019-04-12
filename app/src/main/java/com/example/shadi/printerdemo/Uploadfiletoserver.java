@@ -30,7 +30,7 @@ public class Uploadfiletoserver extends AppCompatActivity implements View.OnClic
     private static final int PICK_FILE_REQUEST = 1;
     private static final String TAG = MainActivity.class.getSimpleName();
     private String selectedFilePath;
-    private String SERVER_URL = "http://coderefer.com/extras/UploadToServer.php";
+    private String SERVER_URL = "http://217.55.137.30:62542/dashboard/upload1.php";
     ImageView ivAttachment;
     Button bUpload;
     TextView tvFileName;
@@ -67,6 +67,7 @@ public class Uploadfiletoserver extends AppCompatActivity implements View.OnClic
 
                         try {
                             //creating new thread to handle Http Operations
+                       //     Toast.makeText(Uploadfiletoserver.this,selectedFilePath , Toast.LENGTH_SHORT).show();
                             uploadFile(selectedFilePath);
                         } catch (OutOfMemoryError e) {
 
@@ -142,7 +143,7 @@ public class Uploadfiletoserver extends AppCompatActivity implements View.OnClic
 
         int bytesRead, bytesAvailable, bufferSize;
         byte[] buffer;
-        int maxBufferSize = 1 * 1024 * 1024;
+        int maxBufferSize = 10 * 1024 * 1024;
         File selectedFile = new File(selectedFilePath);
 
 
@@ -161,6 +162,7 @@ public class Uploadfiletoserver extends AppCompatActivity implements View.OnClic
             return 0;
         } else {
             try {
+
                 FileInputStream fileInputStream = new FileInputStream(selectedFile);
                 URL url = new URL(SERVER_URL);
                 connection = (HttpURLConnection) url.openConnection();
@@ -248,7 +250,7 @@ public class Uploadfiletoserver extends AppCompatActivity implements View.OnClic
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(Uploadfiletoserver.this, "File Not Found", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Uploadfiletoserver.this, "File Not Found" +selectedFilePath, Toast.LENGTH_SHORT).show();
                     }
                 });
             } catch (MalformedURLException e) {
